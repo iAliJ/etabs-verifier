@@ -29,7 +29,7 @@ namespace EtabsAPI
             EModel.InitializeNewModel(ETABSv17.eUnits.kN_mm_C);
             if(File.Exists(EtabsModel.Path))
             {
-                //CopyEtabsFile();
+                BackupEtabsFile();
                 EModel.File.OpenFile(EtabsModel.Path);
             }
             else
@@ -39,11 +39,18 @@ namespace EtabsAPI
         }
 
         // Copy a backup of ETABS file
-        private void CopyEtabsFile()
-        {
+        private void BackupEtabsFile()
+        {            
             string backupLocation = $"{EtabsModel.Directory}\\Backup";
             Directory.CreateDirectory(backupLocation);
-            File.Copy(EtabsModel.Path, $"{backupLocation}\\{EtabsModel.Name}");
+            string filepath = Path.Combine(backupLocation, EtabsModel.Name);
+            if(File.Exists(filepath))
+            {
+                filepath = Path.GetFileNameWithoutExtension(filepath);
+                Console.WriteLine("Backup file already exist");
+                filepath += DateTime.Now.ToString("yyyyMMddHHmmffff") + ".EDB";                
+            }
+            File.Copy(EtabsModel.Path, filepath);                
         }
     }
 }

@@ -34,11 +34,31 @@ namespace EtabsAPI
             // convert the arraye to list
             for(int i = 0; i < numberOfFrames; i++)
             {
-
-                FrameSection fs = new FrameSection(names[i], shapes[i], t3[i], t2[i], tf[i], tw[i], t2b[i], tfb[i]);
+                double[] modifiers = {};
+                model.PropFrame.GetModifiers(names[i], ref modifiers);
+                FrameSection fs = new FrameSection(names[i], shapes[i], t3[i], t2[i], tf[i], tw[i], t2b[i], tfb[i], modifiers);
                 frameSections.Add(fs);                
             }
             return frameSections;
+        }
+
+        public List<FrameSection> GetAllBeamSections(List<FrameSection> allFrameProperties)
+        {
+            List<FrameSection> beamSections = new List<FrameSection>();
+            foreach(FrameSection frameSection in allFrameProperties)
+            {
+                int frameType = 0; 
+                model.PropFrame.GetTypeRebar(frameSection.Name, ref frameType);
+                if(frameType == 2) // 0 = none 1 = column 2 = beam
+                    beamSections.Add(frameSection);
+            }
+            
+            return beamSections;
+        }
+
+        public void ChangeFrameSectionModifier(FrameSection frameSection)
+        {
+
         }
     }
 }
