@@ -51,14 +51,14 @@ namespace EtabsAPI
                 model.PropFrame.GetTypeRebar(frameSection.Name, ref frameType);
                 if(frameType == 2) // 0 = none 1 = column 2 = beam
                     beamSections.Add(frameSection);
-            }
-            
+            }            
             return beamSections;
         }
 
-        public void ChangeFrameSectionModifier(FrameSection frameSection)
+        public void UpdateFrameSectionModifier(FrameSection frameSection)
         {
-
+            double[] modifiers = frameSection.Modifier.ToArray();
+            model.PropFrame.SetModifiers(frameSection.Name, ref modifiers);
         }
     }
 }

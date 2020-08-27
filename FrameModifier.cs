@@ -3,6 +3,7 @@ using ETABSv17;
 
 namespace EtabsAPI
 {
+    public enum Modifier{ Area, Shear2, Shear3, Torsion, Inertia2, Inertia3, Mass, Weight }
     public class FrameModifier
     {
         public double Area { get; set; }
@@ -36,6 +37,22 @@ namespace EtabsAPI
             this.Inertia3 = modifiers[5];
             this.Mass = modifiers[6];
             this.Weight = modifiers[7];
+        }
+
+        // Convert modifier to array
+        public double[] ToArray()
+        {
+            return new double[]
+            {
+                this.Area,
+                this.Shear2,
+                this.Shear3,
+                this.Torsion,
+                this.Inertia2,
+                this.Inertia3,
+                this.Mass,
+                this.Weight
+            };
         }
     }
 

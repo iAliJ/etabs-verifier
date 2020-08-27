@@ -6,8 +6,6 @@ namespace EtabsAPI
 {
     public class ModelHelper
     {
-        // Private fields
-        // Public properties
         public cSapModel EModel { get; private set; }
         public Model EtabsModel;
 
@@ -41,6 +39,7 @@ namespace EtabsAPI
         // Copy a backup of ETABS file
         private void BackupEtabsFile()
         {            
+            // Create a backup folder and copy the ETABS model with date and time info.
             string backupLocation = $"{EtabsModel.Directory}\\Backup";
             Directory.CreateDirectory(backupLocation);
             string filepath = Path.Combine(backupLocation, EtabsModel.Name);
