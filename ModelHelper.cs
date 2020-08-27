@@ -34,7 +34,7 @@ namespace EtabsAPI
             }
             else
             {
-                Console.WriteLine($"Cannot find ETABS file {EtabsModel.Name}, please check the name.");
+                throw new FileNotFoundException($"Cannot find ETABS file {EtabsModel.Name}, please check the name.");
             }
         }
 
@@ -46,9 +46,8 @@ namespace EtabsAPI
             string filepath = Path.Combine(backupLocation, EtabsModel.Name);
             if(File.Exists(filepath))
             {
-                filepath = Path.GetFileNameWithoutExtension(filepath);
-                Console.WriteLine("Backup file already exist");
-                filepath += DateTime.Now.ToString("yyyyMMddHHmmffff") + ".EDB";                
+                filepath = Path.Combine(EtabsModel.Directory + @"\Backup", Path.GetFileNameWithoutExtension(filepath));
+                filepath += DateTime.Now.ToString("yyyyMMddHHmm") + ".EDB";                
             }
             File.Copy(EtabsModel.Path, filepath);                
         }
