@@ -8,12 +8,16 @@ namespace EtabsAPI
     class FrameHelper
     {
         public cSapModel model;
+        public FrameModifier ColumnModifier { get; private set;}
+        public FrameModifier BeamModifier { get; private set; }
         // Return all frame of beam type
 
         // Constructor
         public FrameHelper()
         {
             this.model = Model.Instance;
+            this.ColumnModifier = new FrameModifier();
+            this.BeamModifier = new FrameModifier();
         }
         // This method will get frames properties from a model and store them into list of frameSection objects
         public List<FrameSection> GetAllFrameProperties()
@@ -59,6 +63,71 @@ namespace EtabsAPI
         {
             double[] modifiers = frameSection.Modifier.ToArray();
             model.PropFrame.SetModifiers(frameSection.Name, ref modifiers);
+        }
+
+        public void UpdateColumnSectionModifier(Modifier modifier, double ModifierValue)
+        {
+            switch(modifier)
+            {
+                case Modifier.Area:
+                    ColumnModifier.Area = ModifierValue;
+                    break;
+                case Modifier.Shear2:
+                    ColumnModifier.Shear2 = ModifierValue;
+                    break;
+                case Modifier.Shear3:
+                    ColumnModifier.Shear3 = ModifierValue;
+                    break;
+                case Modifier.Torsion:
+                    ColumnModifier.Torsion = ModifierValue;
+                    break;
+                case Modifier.Inertia2:
+                    ColumnModifier.Inertia2 = ModifierValue;
+                    break;
+                case Modifier.Inertia3:
+                    ColumnModifier.Inertia3 = ModifierValue;
+                    break;
+                case Modifier.Mass:
+                    ColumnModifier.Mass = ModifierValue;
+                    break;
+                case Modifier.Weight:
+                    ColumnModifier.Weight = ModifierValue;
+                    break;
+                default:
+                    throw new Exception("Unknown stiffness modifier parameter");
+            }
+        }
+        public void UpdateBeamSectionModifier(Modifier modifier, double ModifierValue)
+        {
+            switch(modifier)
+            {
+                case Modifier.Area:
+                    BeamModifier.Area = ModifierValue;
+                    break;
+                case Modifier.Shear2:
+                    BeamModifier.Shear2 = ModifierValue;
+                    break;
+                case Modifier.Shear3:
+                    BeamModifier.Shear3 = ModifierValue;
+                    break;
+                case Modifier.Torsion:
+                    BeamModifier.Torsion = ModifierValue;
+                    break;
+                case Modifier.Inertia2:
+                    BeamModifier.Inertia2 = ModifierValue;
+                    break;
+                case Modifier.Inertia3:
+                    BeamModifier.Inertia3 = ModifierValue;
+                    break;
+                case Modifier.Mass:
+                    BeamModifier.Mass = ModifierValue;
+                    break;
+                case Modifier.Weight:
+                    BeamModifier.Weight = ModifierValue;
+                    break;
+                default:
+                    throw new Exception("Unknown stiffness modifier parameter");
+            }
         }
     }
 }
