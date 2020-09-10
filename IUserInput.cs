@@ -5,6 +5,6 @@ namespace EtabsAPI
     public interface IUserInput
     {
         void GetInput();
-        void ValidateInput();
+        void ValidateInput(string input);
     }
 }
