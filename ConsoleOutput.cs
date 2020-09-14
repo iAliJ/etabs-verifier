@@ -4,7 +4,6 @@ namespace EtabsAPI
 {
     public class ConsoleOutput : IOutput
     {
-        string name;
         public void StartMessage()
         {
             string displayMessage = "Welcome to ETABS Verifier Tool";

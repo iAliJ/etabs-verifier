@@ -2,7 +2,7 @@ using System;
 
 namespace EtabsAPI
 {
-    static class ConsoleUserInput : IUserInput
+    static class UserInputServices
     {
         public static FrameModifier userBeamModifier;
         private static FrameModifier userColumnModifier;
