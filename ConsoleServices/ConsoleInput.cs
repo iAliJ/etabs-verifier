@@ -6,11 +6,8 @@ using EtabsAPI;
 
 namespace ConsoleServices
 {
-    enum CommandsList
-    {
-        Beam, Column, Exit
-    }
-    public class ConsoleInput : IUserInput
+    
+    public class ConsoleInput
     {
         string userInput;
         public void GetInput()
