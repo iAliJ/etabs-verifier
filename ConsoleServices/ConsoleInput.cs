@@ -6,38 +6,24 @@ using EtabsAPI;
 
 namespace ConsoleServices
 {
-    
+    // Responsibility of this class is to get and promt for input from the user.
     public class ConsoleInput
     {
-        string userInput;
-        public void GetInput()
+        private static string userInput;
+        public static void GetInput()
         {
             Console.WriteLine("Input a valid command from the list below");
             ShowCommands();
             userInput = Console.ReadLine();
-            ValidateInput(userInput);
-            // If input is valid, proceed to call the command
-            CallCommand(userInput);
-        }
-
-        public void ValidateInput(string input)
-        {
-            bool isValid = false;
-            foreach(var command in Enum.GetNames(typeof(CommandsList)))
-            {   
-                if(command.ToUpper() == input.ToUpper())
-                {
-                    isValid = true;        
-                }
-            }
-            if(!isValid)
+            if(!InputServices.isValidInput(userInput))
             {
-                Console.WriteLine("Invalid input");
-                GetInput();
-            }
+                ConsoleInput.GetInput();
+            };
+            InputServices.CallCommand(userInput);
         }
 
-        private void ShowCommands()
+        // Show available commands to the user
+        private static void ShowCommands()
         {
             string commands = "";
             commands += $"{CommandsList.Beam.ToString()}: Modify beam properties\n";
@@ -47,22 +33,32 @@ namespace ConsoleServices
             Console.WriteLine(commands);
         }
 
-        private void CallCommand(string userInput)
+        public static void ShowBeamCommands()
         {
-            // First determine what the command is
-            CommandsList userCommand = (CommandsList) Enum.Parse(typeof(CommandsList), userInput, true);
-            switch(userCommand)
+            string commands = $"{BeamCommandsList.modifiers.ToString()}: Modify beam properties modifiers\n";
+            // For now this tool will only set beam modifiers
+            //string commands = $"{BeamCommandsList.sections.ToString()}: Modify beam section properties\n";
+            Console.WriteLine(commands);
+        }
+
+        public static void GetBeamCommands()
+        {
+            // Get beam valid command from the user then call the input services to process it
+            Console.WriteLine("Input a valid command from the list above");
+            userInput = Console.ReadLine();
+            if(!InputServices.isValidInput(userInput))
             {
-                case CommandsList.Beam:
-                    // perform action on beams
-                    break;
-                case CommandsList.Column:
-                    // perform action on columns
-                    break;
-                case CommandsList.Exit:
-                    // Exit the tool
-                    break;
+                ConsoleInput.GetBeamCommands();
             }
+            InputServices.CallBeamCommand(userInput);
+        }
+
+        public static void GetBeamModifier()
+        {
+            string message = "input beam modifier values array in the following order:\n";
+            message += "A, V1, V2, T, I2, I3, Mass, Weight";
+            Console.WriteLine(message);
+            string userInput = Console.ReadLine();
         }
     }
 }
