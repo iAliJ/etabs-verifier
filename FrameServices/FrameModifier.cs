@@ -1,8 +1,7 @@
 using System;
 using ETABSv17;
-using EtabsAPI;
 
-namespace FrameServices
+namespace EtabsAPI.FrameServices
 {
     public enum Modifier{ Area, Shear2, Shear3, Torsion, Inertia2, Inertia3, Mass, Weight }
     public class FrameModifier

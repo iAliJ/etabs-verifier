@@ -1,9 +1,8 @@
 using System;
 using System.Text;
 using ETABSv17;
-using EtabsAPI;
 
-namespace FrameServices
+namespace EtabsAPI.FrameServices
 {
     class Frame : FrameSection
     {        

@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ETABSv17;
-using EtabsAPI;
 
-namespace FrameServices
+namespace EtabsAPI.FrameServices
 {
     class FrameHelper
     {

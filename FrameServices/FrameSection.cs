@@ -2,7 +2,7 @@ using System;
 using ETABSv17;
 using EtabsAPI;
 
-namespace FrameServices
+namespace EtabsAPI.FrameServices
 {
     public enum FrameType { beam, column }
     public class FrameSection
