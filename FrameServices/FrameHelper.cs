@@ -53,10 +53,23 @@ namespace EtabsAPI.FrameServices
             {
                 int frameType = 0; 
                 model.PropFrame.GetTypeRebar(frameSection.Name, ref frameType);
-                if(frameType == 2) // 0 = none 1 = column 2 = beam
+                if(frameType == 2) // 0 = none; 1 = column; 2 = beam ..... TODO ... Convert this to enum 
                     beamSections.Add(frameSection);
             }            
             return beamSections;
+        }
+
+        public List<FrameSection> GetAllColumnSections(List<FrameSection> allFrameProperties)
+        {
+            List<FrameSection> columnSections = new List<FrameSection>();
+            foreach(FrameSection frameSection in allFrameProperties)
+            {
+                int frameType = 0; 
+                model.PropFrame.GetTypeRebar(frameSection.Name, ref frameType);
+                if(frameType == 1) // 0 = none; 1 = column; 2 = beam
+                    columnSections.Add(frameSection);
+            }            
+            return columnSections;
         }
 
         public void UpdateFrameSectionModifier(FrameSection frameSection)
@@ -97,6 +110,17 @@ namespace EtabsAPI.FrameServices
                     throw new Exception("Unknown stiffness modifier parameter");
             }
         }
+
+        public void UpdateColumnSectionModifier(FrameModifier modifiers)
+        {
+            // Get all columns sections (Can this be static and called once to save resources ?)
+            List<FrameSection> allCol = GetAllColumnSections(GetAllFrameProperties());
+            foreach(FrameSection col in allCol)
+            {
+                double[] modifiersValues = modifiers.ToArray();
+                model.PropFrame.SetModifiers(col.Name, ref modifiersValues);
+            }
+        }
         public void UpdateBeamSectionModifier(Modifier modifier, double ModifierValue)
         {
             switch(modifier)
@@ -127,6 +151,17 @@ namespace EtabsAPI.FrameServices
                     break;
                 default:
                     throw new Exception("Unknown stiffness modifier parameter");
+            }
+        }
+
+        public void UpdateBeamSectionModifier(FrameModifier modifiers)
+        {
+            // Get all beam sections
+            List<FrameSection> allBeams = GetAllBeamSections(GetAllFrameProperties());
+            foreach(FrameSection beam in allBeams)
+            {
+                double[] modifiersValues = modifiers.ToArray();
+                model.PropFrame.SetModifiers(beam.Name, ref modifiersValues);
             }
         }
     }
