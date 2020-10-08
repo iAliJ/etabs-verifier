@@ -1,4 +1,4 @@
-namespace ConsoleServices
+namespace EtabsAPI.ConsoleServices
 {
     public enum BeamCommandsList
     {

@@ -1,6 +1,4 @@
-using System;
-
-namespace ConsoleServices
+namespace EtabsAPI.ConsoleServices
 {
     public enum CommandsList
     {

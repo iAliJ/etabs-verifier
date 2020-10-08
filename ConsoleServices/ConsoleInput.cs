@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EtabsAPI;
 
-namespace ConsoleServices
+namespace EtabsAPI.ConsoleServices
 {
     // Responsibility of this class is to get and promt for input from the user.
     public class ConsoleInput
@@ -57,8 +56,9 @@ namespace ConsoleServices
         {
             string message = "input beam modifier values array in the following order:\n";
             message += "A, V1, V2, T, I2, I3, Mass, Weight";
-            Console.WriteLine(message);
-            string userInput = Console.ReadLine();
+            Console.WriteLine(message);            
+            string userInput = Console.ReadLine();            
+            InputServices.ProcessBeamModifier(userInput);
         }
     }
 }

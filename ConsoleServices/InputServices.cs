@@ -1,6 +1,6 @@
 using System;
 
-namespace ConsoleServices
+namespace EtabsAPI.ConsoleServices
 {    
     // resposiblity of this class is to process the user input
     public class InputServices
@@ -68,6 +68,13 @@ namespace ConsoleServices
                 }
             }
             return isValid;
+        }
+
+        public static void ProcessBeamModifier(string userInput)
+        {
+            // Convert input to array then call InputParser method
+            string[] Smodifiers = userInput.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+            double[] modifiers = Array.ConvertAll(Smodifiers, new Converter<string, double>(Double.Parse));
         }
     }
 }
