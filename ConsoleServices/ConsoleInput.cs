@@ -60,5 +60,31 @@ namespace EtabsAPI.ConsoleServices
             string userInput = Console.ReadLine();            
             InputServices.ProcessBeamModifier(userInput);
         }
+
+        public static void ShowColumnCommands()
+        {
+            string commands = $"{ColumnCommandsList.modifiers.ToString()}: Modify All columns property modifiers\n";
+            Console.WriteLine(commands);
+        }
+
+        public static void GetColumnCommands()
+        {
+            Console.WriteLine("Input a valid command from the list above");
+            userInput = Console.ReadLine();
+            if(!InputServices.isValidInput(userInput))
+            {
+                ConsoleInput.GetColumnCommands();
+            }
+            InputServices.CallColumnCommand(userInput);
+        }
+
+        public static void GetColumnModifier()
+        {
+            string message = "input column modifier values array in the following order:\n";
+            message += "A, V1, V2, T, I2, I3, Mass, Weight";
+            Console.WriteLine(message);            
+            string userInput = Console.ReadLine();            
+            InputServices.ProcessBeamModifier(userInput);
+        }
     }
 }

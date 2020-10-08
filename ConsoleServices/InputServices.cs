@@ -19,7 +19,9 @@ namespace EtabsAPI.ConsoleServices
                     break;
                 case CommandsList.Column:
                     // perform action on columns
-                    Console.WriteLine("Call column actions");
+                    Console.WriteLine("Calling column commands ...");
+                    ConsoleInput.ShowColumnCommands();
+                    ConsoleInput.GetColumnCommands();
                     break;
                 case CommandsList.Exit:
                     // Exit the tool
@@ -39,6 +41,22 @@ namespace EtabsAPI.ConsoleServices
 
                 case BeamCommandsList.sections:
                 // Cal beam sections commands
+                break;
+            }
+        }
+
+        public static void CallColumnCommand(string userInput)
+        {
+            ColumnCommandsList userCommand = (ColumnCommandsList) Enum.Parse(typeof(ColumnCommandsList), userInput, true);
+            switch(userCommand)
+            {
+                case ColumnCommandsList.modifiers:
+                // Call column modifiers commands
+                ConsoleInput.GetColumnModifier();
+                break;
+
+                case ColumnCommandsList.sections:
+                // Cal column sections commands
                 break;
             }
         }
@@ -75,6 +93,15 @@ namespace EtabsAPI.ConsoleServices
             // Convert input to array then call InputParser method
             string[] Smodifiers = userInput.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
             double[] modifiers = Array.ConvertAll(Smodifiers, new Converter<string, double>(Double.Parse));
+            InputParser.ChangeColumnModifier(modifiers);
+        }
+
+        public static void ProcessColumnModifier(string userInput)
+        {
+            // Convert input to array then call InputParser method
+            string[] Smodifiers = userInput.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+            double[] modifiers = Array.ConvertAll(Smodifiers, new Converter<string, double>(Double.Parse));
+            InputParser.ChangeBeamModifier(modifiers);
         }
     }
 }
