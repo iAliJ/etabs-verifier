@@ -14,14 +14,14 @@ namespace EtabsAPI.ConsoleServices
             {
                 case CommandsList.Beam:
                     Console.WriteLine("Calling beam commands ...");
-                    ConsoleInput.ShowBeamCommands();
-                    ConsoleInput.GetBeamCommands();
+                    ConsoleInput.ShowBeamCommands();                    
+                    CallBeamCommand(ConsoleInput.GetBeamCommands());
                     break;
                 case CommandsList.Column:
                     // perform action on columns
                     Console.WriteLine("Calling column commands ...");
                     ConsoleInput.ShowColumnCommands();
-                    ConsoleInput.GetColumnCommands();
+                    CallColumnCommand(ConsoleInput.GetColumnCommands());
                     break;
                 case CommandsList.Exit:
                     // Exit the tool
@@ -35,8 +35,8 @@ namespace EtabsAPI.ConsoleServices
             switch(userCommand)
             {
                 case BeamCommandsList.modifiers:
-                // Call beam modifiers commands
-                ConsoleInput.GetBeamModifier();
+                // Call beam modifiers commands                
+                ProcessBeamModifier(ConsoleInput.GetBeamModifier());
                 break;
 
                 case BeamCommandsList.sections:
@@ -51,8 +51,8 @@ namespace EtabsAPI.ConsoleServices
             switch(userCommand)
             {
                 case ColumnCommandsList.modifiers:
-                // Call column modifiers commands
-                ConsoleInput.GetColumnModifier();
+                // Call column modifiers commands                
+                ProcessBeamModifier(ConsoleInput.GetColumnModifier());
                 break;
 
                 case ColumnCommandsList.sections:

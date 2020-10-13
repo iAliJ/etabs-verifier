@@ -40,7 +40,7 @@ namespace EtabsAPI.ConsoleServices
             Console.WriteLine(commands);
         }
 
-        public static void GetBeamCommands()
+        public static string GetBeamCommands()
         {
             // Get beam valid command from the user then call the input services to process it
             Console.WriteLine("Input a valid command from the list above");
@@ -49,16 +49,16 @@ namespace EtabsAPI.ConsoleServices
             {
                 ConsoleInput.GetBeamCommands();
             }
-            InputServices.CallBeamCommand(userInput);
+            return userInput;
         }
 
-        public static void GetBeamModifier()
+        public static string GetBeamModifier()
         {
             string message = "input beam modifier values array in the following order:\n";
             message += "A, V1, V2, T, I2, I3, Mass, Weight";
             Console.WriteLine(message);            
             string userInput = Console.ReadLine();            
-            InputServices.ProcessBeamModifier(userInput);
+            return userInput;
         }
 
         public static void ShowColumnCommands()
@@ -67,7 +67,7 @@ namespace EtabsAPI.ConsoleServices
             Console.WriteLine(commands);
         }
 
-        public static void GetColumnCommands()
+        public static string GetColumnCommands()
         {
             Console.WriteLine("Input a valid command from the list above");
             userInput = Console.ReadLine();
@@ -75,16 +75,16 @@ namespace EtabsAPI.ConsoleServices
             {
                 ConsoleInput.GetColumnCommands();
             }
-            InputServices.CallColumnCommand(userInput);
+            return userInput;
         }
 
-        public static void GetColumnModifier()
+        public static string GetColumnModifier()
         {
             string message = "input column modifier values array in the following order:\n";
             message += "A, V1, V2, T, I2, I3, Mass, Weight";
             Console.WriteLine(message);            
             string userInput = Console.ReadLine();            
-            InputServices.ProcessBeamModifier(userInput);
+            return userInput;
         }
     }
 }
