@@ -5,9 +5,9 @@ This tool is currently using CSi ETABS API v17, can be located at **ETABS_VERSIO
 # Current features
 - Change concrete beams property modifiers
 - Change concrete columns property modifiers
+- Model check: All slabs are loaded
 
 # Planned features
-- Model check: All slabs are loaded.
 - Model check: All nodes are connected to at least one element.
 - Model check: verify base level columns are assigned with supports.
 - Model modification: Change modifiers for steel sections
