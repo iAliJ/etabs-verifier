@@ -50,5 +50,14 @@ namespace EtabsAPI
             }
             File.Copy(EtabsModel.Path, filepath);                
         }
+
+        public void GetUnits()
+        {
+            eForce forceU = 0;
+            eLength lengthU = 0;
+            eTemperature  tempU = 0;
+            EModel.GetPresentUnits_2(ref forceU, ref lengthU, ref tempU);
+            Console.WriteLine($"Force:{forceU} Length:{lengthU} Temperature:{tempU}");
+        }
     }
 }
