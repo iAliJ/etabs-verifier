@@ -86,5 +86,21 @@ namespace EtabsAPI.ConsoleServices
             string userInput = Console.ReadLine();            
             return userInput;
         }
+
+        public static string GetModelDirectory()
+        {
+            string message = "Specifiy the model location, eg. C:\\Etabs Model";
+            Console.WriteLine(message);
+            string userInput = Console.ReadLine();
+            return userInput;
+        }
+
+        public static string GetModelName()
+        {
+            string message = "Type the model name, eg. ETABSModel1.EDB";
+            Console.WriteLine(message);
+            string userInput = Console.ReadLine();
+            return userInput;
+        }
     }
 }
