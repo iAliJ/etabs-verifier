@@ -93,7 +93,7 @@ namespace EtabsAPI.ConsoleServices
             // Convert input to array then call InputParser method
             string[] Smodifiers = userInput.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
             double[] modifiers = Array.ConvertAll(Smodifiers, new Converter<string, double>(Double.Parse));
-            InputParser.ChangeColumnModifier(modifiers);
+            InputParser.ChangeBeamModifier(modifiers);
         }
 
         public static void ProcessColumnModifier(string userInput)
